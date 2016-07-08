@@ -17,5 +17,6 @@ Korišćeni parametri metode:
 * **flickr.photos.getSizes**, koja vraća linkove ka različitim veličinama fotografija. Korišćeni parametri:
  * api_key
  * photo_id
- * format
+ * format  
+  
 Prikupljeni podaci čuvaju se u fajlu data/slike.arff.
