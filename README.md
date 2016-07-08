@@ -8,6 +8,7 @@ Korišćeni parametri metode:
  * api_key, ključ aplikacije
  * text, tekst pretrage
  * per_page, broj rezultata po strani
+ * content_type, tip sadržaja(fotografija, screenshot ili ostalo)
  * license, id licenci fotografija
  * format, format odgovora na zahtev
 * **flickr.photos.getInfo**, koja vraća informacije o fotografiji. Korišćeni parametri:
