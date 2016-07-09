@@ -4,10 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,18 +15,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
-import javax.xml.crypto.Data;
 
-import weka.core.Instances;
-import weka.core.converters.ConverterUtils;
-import weka.core.converters.ConverterUtils.DataSource;
 import main.Slika;
 import niti.NitPrikaz;
-
-import java.awt.GridLayout;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
 
 public class FrmPrikazSlika extends JFrame {
 

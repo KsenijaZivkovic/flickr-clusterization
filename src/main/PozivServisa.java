@@ -2,23 +2,15 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.sound.sampled.AudioFormat.Encoding;
-
-import main.Slika;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import weka.core.Attribute;
@@ -39,15 +31,16 @@ public class PozivServisa {
 	private void prikupiPodatke() {
 
 		String key = "acaedd637926848183cdc5b671127de3";
-		String search = "mice%20animal";
+		String tags = "cat";
+		String search = "cat";
 		int perPage = 500;
-		
+
 		LinkedList<Slika> ns = new LinkedList<>();
 		try {
 
 			String https_url = MessageFormat
-					.format("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={0}&text={1}&per_page={2}&content_type=1&license=1,2,3,4,5,6&format=json",
-							key, search, perPage);
+					.format("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={0}&tags={1}&text={2}&per_page={3}&content_type=1&license=1,2,3,4,5,6&format=json",
+							key, tags, search, perPage);
 
 			// niz slika
 			JSONObject jsonObject = primiOdgovor(https_url);
@@ -76,7 +69,10 @@ public class PozivServisa {
 				LinkedList<String> nt = new LinkedList<>();
 				for (int j = 0; j < nizTagova.length(); j++) {
 					JSONObject tag = (JSONObject) nizTagova.get(j);
-					nt.add(tag.getString("raw"));
+					String t = tag.getString("raw");
+					if (!t.contains("cat")) {
+						nt.add(t);
+					}
 				}
 
 				https_url = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=acaedd637926848183cdc5b671127de3&photo_id="
@@ -87,8 +83,8 @@ public class PozivServisa {
 				String link = ((JSONObject) jsonObject.getJSONObject("sizes")
 						.getJSONArray("size").get(1)).getString("source");
 
-				// koristimo sliku samo ako naziv i tagovi nisu prazni
-				if (!nt.isEmpty() && !naziv.isEmpty()) {
+				// koristimo sliku samo ako naziv i tagovi nisu prazni i ako naziv sadrzi cat
+				if (!nt.isEmpty() && !naziv.isEmpty()&& naziv.toLowerCase().contains("cat") || naziv.toLowerCase().contains("kitt") && !naziv.toLowerCase().contains("park")){//&& !naziv.toLowerCase().contains("fish")&& !naziv.toLowerCase().contains("bird")&& naziv.toLowerCase().contains("park")) {
 					Slika s = new Slika(listaID.get(i), link, naziv, nt);
 					ns.add(s);
 				}

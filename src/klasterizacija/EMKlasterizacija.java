@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import main.Slika;
+import weka.classifiers.Evaluation;
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.EM;
 import weka.clusterers.FilteredClusterer;
@@ -27,42 +28,41 @@ import weka.filters.Filter;
 import weka.filters.MultiFilter;
 import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.attribute.StringToWordVector;
+import weka.gui.explorer.VisualizePanel;
 
 public class EMKlasterizacija {
 
 	private FilteredClusterer filteredClusterer;
-	private String arffFileName;
 	private Instances data;
 
 	public EMKlasterizacija(String arffFileName) {
 
-		this.arffFileName = arffFileName;
 		try {
 			DataSource loader = new DataSource(arffFileName);
 			data = loader.getDataSet();
 
 			filteredClusterer = buildClusterer();
-
-			evaluateClusterer(filteredClusterer);
+			
+			ispisiPripadanjaKlasterima(filteredClusterer);
+			dodeliKlastere(filteredClusterer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void evaluateClusterer(FilteredClusterer filteredClusterer)
-			throws Exception {
-		
-		ClusterEvaluation eval = new ClusterEvaluation();
-		eval.setClusterer(filteredClusterer);
-		eval.evaluateClusterer(data);
+	private void ispisiPripadanjaKlasterima(FilteredClusterer filteredClusterer) throws Exception {
+		ClusterEvaluation ce = new ClusterEvaluation();
+		ce.setClusterer(filteredClusterer);
+		ce.evaluateClusterer(data);
+		System.out.println(ce.clusterResultsToString());
+	}
 
-		System.out.println(eval.clusterResultsToString());
-		System.out.println(eval.getNumClusters());
-		
-		double[] as = eval.getClusterAssignments();
-		String[] klasteri = new String[as.length];
-		for (int i = 0; i < as.length; i++) {
-			klasteri[i] = "Klaster " + (int) (as[i] + 1);
+	private void dodeliKlastere(FilteredClusterer filteredClusterer)
+			throws Exception {
+			
+		List<String> klasteri = new LinkedList<>();
+		for(int i = 0; i < data.numInstances(); i++){		
+			klasteri.add("Klaster "+ (filteredClusterer.clusterInstance(data.instance(i))+1));
 		}
 
 		dodajPripadanjeKlasteru(klasteri);
@@ -71,10 +71,10 @@ public class EMKlasterizacija {
 	private FilteredClusterer buildClusterer() throws Exception {
 
 		WordTokenizer tokenizer = new WordTokenizer();
-		tokenizer.setDelimiters(".,;:=_'/\"()?!#0123456789@- ");
+		tokenizer.setDelimiters(".,;:=_'/\"()?!#@- ");
 
 		Remove removeFilter = new Remove();
-		removeFilter.setAttributeIndices("first-3,5");
+		removeFilter.setAttributeIndices("first-2,5");
 
 		StringToWordVector textToWordfilter = new StringToWordVector();
 		textToWordfilter.setTokenizer(tokenizer);
@@ -84,7 +84,7 @@ public class EMKlasterizacija {
 		textToWordfilter.setStemmer(stemmer);
 
 		textToWordfilter.setInputFormat(data);
-		textToWordfilter.setWordsToKeep(1000);
+		textToWordfilter.setWordsToKeep(500);
 		textToWordfilter.setUseStoplist(true);
 		textToWordfilter.setDoNotOperateOnPerClassBasis(true);
 		textToWordfilter.setLowerCaseTokens(true);
@@ -110,7 +110,7 @@ public class EMKlasterizacija {
 
 	}
 
-	private void dodajPripadanjeKlasteru(String[] klasteri) throws Exception {
+	private void dodajPripadanjeKlasteru(List<String> klasteri) throws Exception {
 
 		BufferedReader reader = new BufferedReader(new FileReader(
 				"./data/slike.arff"));
@@ -118,7 +118,7 @@ public class EMKlasterizacija {
 		Instances data = arff.getData();
 
 		for (int i = 0; i < data.numInstances(); i++) {
-			data.instance(i).setValue(4, klasteri[i]);
+			data.instance(i).setValue(4, klasteri.get(i));
 		}
 
 		ArffSaver saver = new ArffSaver();
