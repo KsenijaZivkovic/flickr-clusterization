@@ -1,6 +1,6 @@
-# Klasterizacija i pretraživanje slika sa Flickr-a
+# 1. Klasterizacija i pretraživanje slika sa Flickr-a
 Korišćenjem Flickr API-ja aplikacija preuzima podatke o slikama, klasterizuje ih na osnovu naziva i tagova slika i prikazuje slike po pronađenim klasterima.
-#DataSet
+# 2. DataSet
 Podaci nad kojima se radi klasterizacija prikupljeni su sa [Flickr](http://www.flickr.com)-a.
 Za prikupljanje podataka korišćene su sledeće metode:
 * **flickr.photos.search**, koja vraća listu slika koje zadovoljavaju kriterijum pretrage.
@@ -29,7 +29,7 @@ Prikupljeni podaci čuvaju se u fajlu data/slike.arff.
 Atributi koji se čuvaju su: id, link ka slici, naziv slike, tagovi i broj klastera kome slika pripada, koji je inicijalno nepoznat i vrednost mu se dodeljuje nakon izvršene klasterizacije.  
 ![arff fajl](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/arff.JPG?raw=true)  
   
-#EM klasterovanje
+# 3. EM klasterovanje
 Klasterovanje je određivanje pripadnosti objekata različitim grupama, tako da u svakoj grupi budu objekti koji dele neke zajedničke osobine. Expectation Minimization (EM) algoritam dodeljuje svakoj instanci broj koji predstavlja verovatnoću pripadanja definisanim klasterima. Uz pomoć ovog algoritma, moguće je odrediti unapred broj klastera ili algoritam odlučuje broj klastera na osnovu kros validacije.  
 Klasterovanje se sastoji iz dva koraka:
 * na osnovu pretpostavljenih parametara modela za svaku instancu računa se verovatnoća pripadanju klasterima
@@ -37,12 +37,12 @@ Klasterovanje se sastoji iz dva koraka:
   
 Koraci se ponavljaju dok ima značajne promene loga ukupne verovatnoće modela. Da bi se izbeglo zaglavljivanje u lokalnom maksimumu, primenjuje se postupak više puta uz različit izbor početnih vrednosti parametara.  
   
-#Rezultati klasterovanja
+# 4. Rezultati klasterovanja
 Algoritam je na osnovu kros validacije zaključio da slike treba podeliti u 3 klastera.  
 ![Broj klastera](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/clusternum.PNG?raw=true)  
 Broj instanci po klasteru:  
 ![Broj instanci po klasteru](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/clusteredinstances.JPG?raw=true)  
-#Vizuelizacija klastera
+# 5. Vizuelizacija klastera
 Izgled aplikacije  
 ![Aplikacija](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/app.JPG?raw=true)  
 Odabirom klastera iz combo box-a prikazuju se slike koje pripadaju tom klasteru.  
@@ -54,7 +54,7 @@ Na osnovu grupisanih slika, imena koja bi mogla biti dodeljena klasterima su:
 * Klaster 2 = Kacige u obliku mačaka
 * Klaster 3 = Slatke mace    
 
-#Tehnička realizacija
+# 6. Tehnička realizacija
 Kod je pisan u javi i korišćene su biblioteke: weka i java-json biblioteka.  
 Weka je biblioteka koja sadrži algoritme za analizu podataka i predviđanje. Sadrži implementiran algoritam za klasterizaciju EM, koji je korišćen u aplikaciji za grupisanje fotografija.  
 Java-json biblioteka koja omogućava parsiranje i generisanje JSON-a. Ova biblioteka je u aplikaciji korišćena za parsiranje odgovora od web servera.
