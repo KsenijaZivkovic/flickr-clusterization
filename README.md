@@ -24,10 +24,10 @@ Korišćeni parametri metode:
 Primer poziva servisa:  
 https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=acaedd637926848183cdc5b671127de3&tags=cat&text=cat&per_page=500&content_type=1&license=1,2,3,4,5,6&format=json  
 Primer odgovora na poziv servisa:  
-![JSON odgovor](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/jsonodgovor.JPG?raw=true)  
+![JSON odgovor](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/jsonodgovor.JPG?raw=true)  
 Prikupljeni podaci čuvaju se u fajlu data/slike.arff.  
 Atributi koji se čuvaju su: id, link ka slici, naziv slike, tagovi i broj klastera kome slika pripada, koji je inicijalno nepoznat i vrednost mu se dodeljuje nakon izvršene klasterizacije.  
-![arff fajl](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/arff.JPG?raw=true)  
+![arff fajl](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/arff.JPG?raw=true)  
   
 # 3. EM klasterovanje
 Klasterovanje je određivanje pripadnosti objekata različitim grupama, tako da u svakoj grupi budu objekti koji dele neke zajedničke osobine. Expectation Minimization (EM) algoritam dodeljuje svakoj instanci broj koji predstavlja verovatnoću pripadanja definisanim klasterima. Uz pomoć ovog algoritma, moguće je odrediti unapred broj klastera ili algoritam odlučuje broj klastera na osnovu kros validacije.  
@@ -39,16 +39,16 @@ Koraci se ponavljaju dok ima značajne promene loga ukupne verovatnoće modela. 
   
 # 4. Rezultati klasterovanja
 Algoritam je na osnovu kros validacije zaključio da slike treba podeliti u 3 klastera.  
-![Broj klastera](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/clusternum.PNG?raw=true)  
+![Broj klastera](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/clusternum.PNG?raw=true)  
 Broj instanci po klasteru:  
-![Broj instanci po klasteru](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/clusteredinstances.JPG?raw=true)  
+![Broj instanci po klasteru](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/clusteredinstances.JPG?raw=true)  
 # 5. Vizuelizacija klastera
 Izgled aplikacije  
-![Aplikacija](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/app.JPG?raw=true)  
+![Aplikacija](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/app.JPG?raw=true)  
 Odabirom klastera iz combo box-a prikazuju se slike koje pripadaju tom klasteru.  
-![Klaster1](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/klaster1.JPG?raw=true)  
-![Klaster2](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/klaster2.JPG?raw=true)  
-![Klaster3](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/update/screenshots/klaster3.JPG?raw=true)  
+![Klaster1](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/klaster1.JPG?raw=true)  
+![Klaster2](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/klaster2.JPG?raw=true)  
+![Klaster3](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/klaster3.JPG?raw=true)  
 Na osnovu grupisanih slika, imena koja bi mogla biti dodeljena klasterima su:
 * Klaster 1 = Mačke u parku
 * Klaster 2 = Kacige u obliku mačaka
