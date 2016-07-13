@@ -25,7 +25,7 @@ Primer poziva servisa:
 https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=acaedd637926848183cdc5b671127de3&tags=cat&text=cat&per_page=500&content_type=1&license=1,2,3,4,5,6&format=json  
 Primer odgovora na poziv servisa:  
 ![JSON odgovor](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/jsonodgovor.JPG?raw=true)  
-Prikupljeni podaci čuvaju se u fajlu data/slike.arff.  
+Prikupljeni podaci čuvaju se u fajlu [data/slike.arff](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/data/slike.arff).  
 Atributi koji se čuvaju su: id, link ka slici, naziv slike, tagovi i broj klastera kome slika pripada, koji je inicijalno nepoznat i vrednost mu se dodeljuje nakon izvršene klasterizacije.  
 ![arff fajl](https://github.com/KsenijaZivkovic/flickr-clusterization/blob/master/screenshots/arff.JPG?raw=true)  
   
@@ -36,6 +36,8 @@ Klasterovanje se sastoji iz dva koraka:
 * na osnovu instanci računaju se ponovo parametri modela    
   
 Koraci se ponavljaju dok ima značajne promene loga ukupne verovatnoće modela. Da bi se izbeglo zaglavljivanje u lokalnom maksimumu, primenjuje se postupak više puta uz različit izbor početnih vrednosti parametara.  
+  
+Klasterizacija je vršena na osnovu sledećih atributa: title i tags. Da bi atributi bili pogodni za klasterovanje, korišćen je StringToWordVector filter, koji pretvara atribute tipa String u set atributa koji predstavljaju reči koje su se pojavile u tom atributu. Ostali atributi su ignorisani.  
   
 # 4. Rezultati klasterovanja
 Algoritam je na osnovu kros validacije zaključio da slike treba podeliti u 3 klastera.  
@@ -55,7 +57,14 @@ Na osnovu grupisanih slika, imena koja bi mogla biti dodeljena klasterima su:
 * Klaster 3 = Slatke mace    
 
 # 6. Tehnička realizacija
-Kod je pisan u javi i korišćene su biblioteke: weka i java-json biblioteka.  
+Kod je pisan u javi i korišćene su biblioteke: [weka](http://www.cs.waikato.ac.nz/ml/weka/) i [java-json](http://www.oracle.com/technetwork/articles/java/json-1973242.html) biblioteka.  
 Weka je biblioteka koja sadrži algoritme za analizu podataka i predviđanje. Sadrži implementiran algoritam za klasterizaciju EM, koji je korišćen u aplikaciji za grupisanje fotografija.  
-Java-json biblioteka koja omogućava parsiranje i generisanje JSON-a. Ova biblioteka je u aplikaciji korišćena za parsiranje odgovora od web servera.
+Java-json biblioteka koja omogućava parsiranje i generisanje JSON-a. Ova biblioteka je u aplikaciji korišćena za parsiranje odgovora od web servera.  
+
+# 7. Priznanja  
+Aplikacija je razvijena kao deo projekta u okviru kursa Inteligentni Sistemi na Fakultetu organizacionih nauka u Beogradu.
+
+# 8. Licenca  
+Dozvola se ovim dodeljuje besplatno bilo kojoj osobi da bez ograničenja koristi, modifikuje, objavljuje i distribuira kopije ove aplikacije i dokumentacije koja ide uz nju.
+
 
