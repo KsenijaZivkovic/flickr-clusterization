@@ -62,9 +62,17 @@ Weka je biblioteka koja sadrži algoritme za analizu podataka i predviđanje. Sa
 Java-json biblioteka koja omogućava parsiranje i generisanje JSON-a. Ova biblioteka je u aplikaciji korišćena za parsiranje odgovora od web servera.  
 
 # 7. Priznanja  
-Aplikacija je razvijena kao deo projekta u okviru kursa Inteligentni Sistemi na Fakultetu organizacionih nauka u Beogradu.
+Aplikacija je razvijena kao deo projekta u okviru predmeta [Inteligentni sistemi](http://ai.fon.bg.ac.rs/osnovne/inteligentni-sistemi/) na Fakultetu organizacionih nauka u Beogradu.
 
 # 8. Licenca  
-Dozvola se ovim dodeljuje besplatno bilo kojoj osobi da bez ograničenja koristi, modifikuje, objavljuje i distribuira kopije ove aplikacije i dokumentacije koja ide uz nju.
+Ovaj projekat je publikovan pod MIT licencom.
 
+The MIT License (MIT)
 
+Copyright (c) 2016 Ksenija Zivkovic - xenija.zivkovic@gmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
